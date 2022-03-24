@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { computed, reactive, ref, h } from "vue";
+import { computed, reactive, ref } from "vue";
+
+const onSubmit = (event) => {
+  event.preventDefault();
+  alert(JSON.stringify(form));
+};
+
 const availableCommodities = [
   {
     id: "corn",
@@ -23,11 +29,14 @@ function containsCommoditie(commoditie: string) {
   return selectedCommodities.value.toString().includes(commoditie);
 }
 
-const selectedCommodities = ref([]);
+function formContainsData() {
+  return (
+    selectedCommodities.value !== undefined &&
+    selectedCommodities.value.length !== 0
+  );
+}
 
-const concatSelectedCars = computed(() => {
-  return selectedCommodities.value.join(", ");
-});
+const selectedCommodities = ref([]);
 
 const form = reactive({
   coffee: 0,
@@ -59,45 +68,32 @@ const form = reactive({
           label="Ingresa cuantas libras de mazorca quieres plantar:"
           v-if="containsCommoditie('corn') === true"
         >
-          <b-form-input
-            id="input-corn"
-            v-model="form.mazorca"
-            type="number"
-          />
+          <b-form-input id="input-corn" v-model="form.mazorca" type="number" />
         </b-form-group>
         <b-form-group
           id="input-group-coffee"
           label="Ingresa cuantas libras de café quieres plantar:"
           v-if="containsCommoditie('coffee') === true"
         >
-          <b-form-input
-            id="input-corn"
-            v-model="form.coffee"
-            type="number"
-          />
+          <b-form-input id="input-corn" v-model="form.coffee" type="number" />
         </b-form-group>
         <b-form-group
           id="input-group-potato"
           label="Ingresa cuantas libras papa quieres plantar:"
           v-if="containsCommoditie('potato') === true"
         >
-          <b-form-input
-            id="input-potato"
-            v-model="form.potato"
-            type="number"
-          />
+          <b-form-input id="input-potato" v-model="form.potato" type="number" />
         </b-form-group>
         <b-form-group
           id="input-group-potato"
           label="Ingresa cuantas libras de zanahoria quieres plantar:"
           v-if="containsCommoditie('carrot') === true"
         >
-          <b-form-input
-            id="input-carrot"
-            v-model="form.carrot"
-            type="number"
-          />
+          <b-form-input id="input-carrot" v-model="form.carrot" type="number" />
         </b-form-group>
+        <b-button type="submit" variant="primary" v-if="formContainsData()"
+          >Cotizar
+        </b-button>
       </b-form>
     </b-card>
   </b-card>

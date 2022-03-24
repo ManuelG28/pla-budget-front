@@ -1,6 +1,5 @@
 <script>
-import { FruitPineapple } from "mdue";
-import { Corn } from "mdue";
+import { Corn, FruitPineapple } from "mdue";
 export default {
   props: {
     title: String,
