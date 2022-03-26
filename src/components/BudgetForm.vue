@@ -55,7 +55,6 @@ const form = reactive({
 });
 </script>
 
-<Supense>
 <template>
   <b-card>
     <b-card border-variant="light">
@@ -108,8 +107,6 @@ const form = reactive({
     </b-card>
   </b-card>
 </template>
-
-</Supense>
 
 <style scoped>
 button {
