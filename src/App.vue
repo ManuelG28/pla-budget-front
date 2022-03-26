@@ -4,6 +4,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <BudgetView />
+  <BudgetListView />
   <RouterView />
 </template>
 
@@ -14,9 +15,8 @@ import { RouterLink, RouterView } from "vue-router";
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #72A06A;
+  background-color: #72a06a;
   font-weight: normal;
 }
-
 </style>
   

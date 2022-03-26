@@ -1,10 +1,19 @@
 <script lang="ts" setup>
-import { computed, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
+import axios from "axios";
+import router from "../router/index";
 
-const onSubmit = (event) => {
-  event.preventDefault();
-  alert(JSON.stringify(form));
-};
+async function onSubmit() {
+  console.log(form);
+  const res = await axios.post(
+    process.env.CREATE_QUOTATION_API,
+    form
+  );
+  router.push({
+    name: "list",
+    params: { quotations: JSON.stringify(res.data) },
+  });
+}
 
 const availableCommodities = [
   {
@@ -40,12 +49,13 @@ const selectedCommodities = ref([]);
 
 const form = reactive({
   coffee: 0,
-  mazorca: 0,
+  corn: 0,
   potato: 0,
   carrot: 0,
 });
 </script>
 
+<Supense>
 <template>
   <b-card>
     <b-card border-variant="light">
@@ -98,6 +108,8 @@ const form = reactive({
     </b-card>
   </b-card>
 </template>
+
+</Supense>
 
 <style scoped>
 button {
